@@ -21,7 +21,7 @@ fun main() {
     }
 
     fun Locations.calculateSimilarityScore(): Int {
-        return left.foldIndexed(0) { idx, sum, leftItem ->
+        return left.fold(0) { sum, leftItem ->
             sum + leftItem * right.count { it == leftItem }
         }
     }
@@ -35,29 +35,23 @@ fun main() {
     }
 
     val testInput = readInput("Day01_test")
-    val part1Test = measureTimeMillis({ time -> print("Part1 Test ($time ms): ") }) {
+    val part1Test = measureTimeMillis({ time, result -> println("Part1 Test ($time ms): $result") }) {
         part1(testInput)
     }
-    part1Test.println()
-    val part2Test = measureTimeMillis({ time -> print("Part2 Test ($time ms): ") }) {
+    val part2Test = measureTimeMillis({ time, result -> println("Part2 Test ($time ms): $result") }) {
         part2(testInput)
     }
-    part2Test.println()
     check(part1Test == 11)
     check(part2Test == 31)
 
     // Read the input from the `src/Day01.txt` file.
     val input = readInput("Day01")
-    val part1 = measureTimeMillis({ time -> print("Part1 ($time ms): ") }) {
+    val part1 = measureTimeMillis({ time, result -> println("Part1 ($time ms): $result") }) {
         part1(input)
     }
-    part1.println()
-    val part2 = measureTimeMillis({ time -> print("Part2 ($time ms): ") }) {
+    val part2 = measureTimeMillis({ time, result -> println("Part2 ($time ms): $result") }) {
         part2(input)
     }
-    part2.println()
     check(part1 == 2815556)
     check(part2 == 23927637)
-
-    println("### Success! ###")
 }

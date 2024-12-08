@@ -27,13 +27,13 @@ fun Any?.println() = println(this)
  */
 
 inline fun <T> measureTimeMillis(
-  loggingFunction: (Long) -> Unit,
+  loggingFunction: (Long, T) -> Unit,
   function: () -> T
 ): T {
 
   val startTime = System.currentTimeMillis()
   val result: T = function.invoke()
-  loggingFunction.invoke(System.currentTimeMillis() - startTime)
+  loggingFunction.invoke(System.currentTimeMillis() - startTime, result)
 
   return result
 }
