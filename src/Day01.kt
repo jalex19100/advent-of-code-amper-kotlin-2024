@@ -33,25 +33,26 @@ fun main() {
     fun part2(input: List<String>): Int {
         return Locations(input).calculateSimilarityScore()
     }
-
+    
+    // Test Input
     val testInput = readInput("Day01_test")
     val part1Test = measureTimeMillis({ time, result -> println("Part1 Test ($time ms): $result") }) {
         part1(testInput)
     }
+    check(part1Test == 11)
     val part2Test = measureTimeMillis({ time, result -> println("Part2 Test ($time ms): $result") }) {
         part2(testInput)
     }
-    check(part1Test == 11)
     check(part2Test == 31)
 
-    // Read the input from the `src/Day01.txt` file.
+    // User Input
     val input = readInput("Day01")
     val part1 = measureTimeMillis({ time, result -> println("Part1 ($time ms): $result") }) {
         part1(input)
     }
+    check(part1 == 2815556)
     val part2 = measureTimeMillis({ time, result -> println("Part2 ($time ms): $result") }) {
         part2(input)
     }
-    check(part1 == 2815556)
     check(part2 == 23927637)
 }

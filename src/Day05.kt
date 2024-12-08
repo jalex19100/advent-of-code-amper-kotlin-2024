@@ -1,10 +1,5 @@
 fun main() {
 
-    fun intSplitter(separator: Char, input: List<String>): List<List<Int>> {
-        return input.filter { it.contains(separator) }
-            .map { line -> line.split(separator).map { it.toInt() } }
-    }
-
     fun ruleCheck(update: List<Int>, rules: List<List<Int>>): Boolean {
         rules.forEach { rule ->
             if (update.containsAll(rule) && update.indexOf(rule[0]) > update.indexOf(rule[1])) {
@@ -19,7 +14,7 @@ fun main() {
     )
 
     fun SafetyManualUpdates(input: List<String>): SafetyManualUpdates {
-        return SafetyManualUpdates(intSplitter('|', input), intSplitter(',', input))
+        return SafetyManualUpdates(splitToListsOfInts('|', input), splitToListsOfInts(',', input))
     }
 
     fun getGraph(rules: List<List<Int>>, update: List<Int>): Map<Int, List<Int>> {
@@ -69,24 +64,25 @@ fun main() {
         return sumMiddle(sortedInvalidUpdates)
     }
 
+    // Test Input
     val testInput = readInput("Day05_test")
     val part1Test = measureTimeMillis({ time, result -> println("Part1 Test ($time ms): $result") }) {
         part1(testInput)
     }
+    check(part1Test == 143)
     val part2Test = measureTimeMillis({ time, result -> println("Part2 Test ($time ms): $result") }) {
         part2(testInput)
     }
-    check(part1Test == 143)
     check(part2Test == 123)
 
-    // Read the input from the `src/Day01.txt` file.
+    // User Input
     val input = readInput("Day05")
     val part1 = measureTimeMillis({ time, result -> println("Part1 ($time ms): $result") }) {
         part1(input)
     }
+    check(part1 == 5732)
     val part2 = measureTimeMillis({ time, result -> println("Part2 ($time ms): $result ") }) {
         part2(input)
     }
-    check(part1 == 5732)
     check(part2 == 4716)
 }
