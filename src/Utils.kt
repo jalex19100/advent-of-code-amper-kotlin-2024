@@ -38,6 +38,7 @@ inline fun <T> measureTimeMillis(
   return result
 }
 
+
 fun splitToListsOfInts(separator: Char, input: List<String>): List<List<Int>> {
   return input.filter { it.contains(separator) }
     .map { line -> line.split(separator).map { it.toInt() } }
