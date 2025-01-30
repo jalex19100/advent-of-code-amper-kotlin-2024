@@ -58,3 +58,4 @@ fun gcd(x: Long, y: Long): Long {
 fun lcm(x: Long, y: Long): Long {
   return abs(x * y) / gcd(x, y);
 }
+
